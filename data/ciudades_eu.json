@@ -149,7 +149,9 @@
     "lng": "3.05858",
     "country": "FR",
     "admin1": "32",
-    "admin2": "59"
+    "admin2": "59",
+    "area_km2": 47.87
+
   },
   {
     "name": "Marseille Prefecture",
@@ -238,7 +240,9 @@
     "lng": "12.51133",
     "country": "IT",
     "admin1": "07",
-    "admin2": "RM"
+    "admin2": "RM",
+    "area_km2": 1287
+
   },
   {
     "name": "Milan",
@@ -255,7 +259,8 @@
     "lng": "4.88969",
     "country": "NL",
     "admin1": "07",
-    "admin2": "0363"
+    "admin2": "0363",
+    "area_km2": 219.3
   },
   {
     "name": "Oslo",
@@ -263,7 +268,8 @@
     "lng": "10.74609",
     "country": "NO",
     "admin1": "12",
-    "admin2": "0301"
+    "admin2": "0301",
+    "area_km2": 454
   },
   {
     "name": "Warsaw",
@@ -271,7 +277,8 @@
     "lng": "21.01178",
     "country": "PL",
     "admin1": "78",
-    "admin2": "1465"
+    "admin2": "1465",
+    "area_km2": 517.2
   },
   {
     "name": "Lisbon",
@@ -279,7 +286,8 @@
     "lng": "-9.13333",
     "country": "PT",
     "admin1": "14",
-    "admin2": "1106"
+    "admin2": "1106",
+    "area_km2": 100
   },
   {
     "name": "Porto",
@@ -287,7 +295,8 @@
     "lng": "-8.61099",
     "country": "PT",
     "admin1": "17",
-    "admin2": "1312"
+    "admin2": "1312",
+    "area_km2": 41.42
   },
   {
     "name": "Bucureşci",
@@ -295,7 +304,8 @@
     "lng": "22.9",
     "country": "RO",
     "admin1": "21",
-    "admin2": "88868"
+    "admin2": "88868",
+    "area_km2": 69.09
   },
   {
     "name": "Novi Beograd",
@@ -303,7 +313,8 @@
     "lng": "20.42417",
     "country": "RS",
     "admin1": "SE",
-    "admin2": "0"
+    "admin2": "0",
+    "area_km2": 40.96
   },
   {
     "name": "Ufa",
@@ -311,7 +322,8 @@
     "lng": "55.96779",
     "country": "RU",
     "admin1": "08",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 707.9
   },
   {
     "name": "Saint Petersburg",
@@ -319,7 +331,8 @@
     "lng": "30.31413",
     "country": "RU",
     "admin1": "66",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 1439
   },
   {
     "name": "Samara",
@@ -327,7 +340,8 @@
     "lng": "50.15",
     "country": "RU",
     "admin1": "65",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 541
   },
   {
     "name": "Rostov-na-Donu",
@@ -335,7 +349,8 @@
     "lng": "39.72328",
     "country": "RU",
     "admin1": "61",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 354
   },
   {
     "name": "Nizhniy Novgorod",
@@ -343,7 +358,8 @@
     "lng": "44.00205",
     "country": "RU",
     "admin1": "51",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 460
   },
   {
     "name": "Moscow",
@@ -351,7 +367,8 @@
     "lng": "37.61556",
     "country": "RU",
     "admin1": "48",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 2562
   },
   {
     "name": "Kazan",
@@ -359,7 +376,8 @@
     "lng": "49.12214",
     "country": "RU",
     "admin1": "73",
-    "admin2": "862913"
+    "admin2": "862913",
+    "area_km2": 515.8
   },
   {
     "name": "Yekaterinburg",
@@ -367,7 +385,8 @@
     "lng": "60.6122",
     "country": "RU",
     "admin1": "71",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 1112
   },
   {
     "name": "Omsk",
@@ -375,7 +394,8 @@
     "lng": "73.36859",
     "country": "RU",
     "admin1": "54",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 573
   },
   {
     "name": "Novosibirsk",
@@ -383,7 +403,8 @@
     "lng": "82.94339",
     "country": "RU",
     "admin1": "53",
-    "admin2": "1496742"
+    "admin2": "1496742",
+    "area_km2": 502.7
   },
   {
     "name": "Krasnoyarsk",
@@ -391,7 +412,8 @@
     "lng": "92.90765",
     "country": "RU",
     "admin1": "91",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 348
   },
   {
     "name": "Chelyabinsk",
@@ -399,7 +421,8 @@
     "lng": "61.42915",
     "country": "RU",
     "admin1": "13",
-    "admin2": "1535932"
+    "admin2": "1535932",
+    "area_km2": 530
   },
   {
     "name": "Stockholm",
@@ -407,7 +430,8 @@
     "lng": "18.06871",
     "country": "SE",
     "admin1": "26",
-    "admin2": "0180"
+    "admin2": "0180",
+    "area_km2": 187.16
   },
   {
     "name": "Kyiv",
@@ -415,7 +439,8 @@
     "lng": "30.5238",
     "country": "UA",
     "admin1": "12",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 839
   },
   {
     "name": "Kharkiv",
@@ -423,6 +448,7 @@
     "lng": "36.25272",
     "country": "UA",
     "admin1": "07",
-    "admin2": "6312"
+    "admin2": "6312",
+    "area_km2": 350
   }
 ]
