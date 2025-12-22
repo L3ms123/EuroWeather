@@ -5,45 +5,77 @@ from decimal import Decimal
 import math
 import requests
 from datetime import datetime, timezone
-
+import time
+import random
 # ----------------------------------
 # CONFIGURATION
 # ----------------------------------
 
-CELL_SIZE_KM = 20 
-EARTH_RADIUS_KM = 6371
 TTL_DAYS = 7
 TTL_SECONDS = TTL_DAYS * 24 * 3600
 
 DYNAMODB_TABLE = "WeatherReadings"
 CITY_JSON = "data/ciudades_eu.json"
+session = requests.Session()
+
 
 # ----------------------------------
 # UTILS
 # ----------------------------------
 
-# Compute new lat and lon from the movement in km
-def move_lat_lon(lat, lon, d_north_km, d_east_km):
-    new_lat = lat + (d_north_km / EARTH_RADIUS_KM) * (180 / math.pi)
-    new_lon = lon + (d_east_km / EARTH_RADIUS_KM) * (180 / math.pi) / math.cos(lat * math.pi / 180)
-    return new_lat, new_lon
-
 # Generate grids for a city
-def generate_city_grids(center_lat, center_lon, radius_km):
-    grids = set()
-    n_steps = int((radius_km * 2) // CELL_SIZE_KM) + 1
-    offset_start = -radius_km
-    for i in range(n_steps):  # norte-sur
-        for j in range(n_steps):  # este-oeste
-            d_north = offset_start + i * CELL_SIZE_KM
-            d_east = offset_start + j * CELL_SIZE_KM
-            lat, lon = move_lat_lon(center_lat, center_lon, d_north, d_east)
-            geohash = pgh.encode(lat, lon, precision=5)
-            grids.add((geohash, lat, lon))
+def generate_city_grids(center_lat, center_lon, area_km2, precision=5):
+
+    directions = ["top", "bottom", "left", "right"]
+    
+    center_hash = pgh.encode(center_lat, center_lon, precision)
+
+    cell_area_km2 = 25  # geohash precision 5
+    n_cells = math.ceil(area_km2 / cell_area_km2)
+
+    radius = math.ceil(math.sqrt(n_cells) / 2)
+
+    grids = set([center_hash])
+
+    frontier = [center_hash]
+    visited = set(frontier)
+
+    while len(grids) < n_cells:
+        new_frontier = []
+
+        for gh in frontier:
+            neighbors = [pgh.get_adjacent(gh, d) for d in directions]
+
+            for ngh in neighbors:
+                if ngh not in visited:
+                    visited.add(ngh)
+                    grids.add(ngh)
+                    new_frontier.append(ngh)
+                    if len(grids) >= n_cells:
+                        break
+            if len(grids) >= n_cells:
+                break
+        frontier = new_frontier
+
     return grids
 
+# Obtain index of the time closest to the current time
+def get_current_hour_index(times):
+    now = datetime.now(timezone.utc)
+    best_idx = 0
+    min_diff = float("inf")
+
+    for i, t in enumerate(times):
+        t_dt = datetime.fromisoformat(t).replace(tzinfo=timezone.utc)
+        diff = abs((t_dt - now).total_seconds())
+        if diff < min_diff:
+            min_diff = diff
+            best_idx = i
+
+    return best_idx
+
 # Obtain time data from Open-Meteo for a given grid
-def fetch_hourly(lat, lon):
+def fetch_hourly(lat, lon, retries=5):
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
         "latitude": lat,
@@ -51,36 +83,55 @@ def fetch_hourly(lat, lon):
         "hourly": ["temperature_2m", "relativehumidity_2m", "windspeed_10m"],
         "timezone": "UTC"
     }
-    r = requests.get(url, params=params, timeout=10)
-    r.raise_for_status()
-    return r.json()
+
+    for attempt in range(retries):
+        try:
+            r = session.get(url, params=params, timeout=10)
+            r.raise_for_status()
+            return r.json()
+        except requests.exceptions.RequestException as e:
+            wait = 2 ** attempt + random.random()
+            print(f"Open-Meteo error, retrying in {wait:.1f}s...")
+            time.sleep(wait)
+
+    raise RuntimeError("Open-Meteo failed after retries")
+
 
 # Store data on DynamoDB
 def store_grid_data(weather_table, city, lat, lon, geohash):
     data = fetch_hourly(lat, lon)
+
     times = data["hourly"]["time"]
     temps = data["hourly"]["temperature_2m"]
-    hums = data["hourly"]["relativehumidity_2m"]
+    hums  = data["hourly"]["relativehumidity_2m"]
     winds = data["hourly"]["windspeed_10m"]
 
-    for idx in range(len(times)):
-        ts_iso = times[idx] + "Z"
-        ts_unix = int(datetime.fromisoformat(times[idx]).replace(tzinfo=timezone.utc).timestamp())
-        item = {
-            "PK": f"grid#{geohash}",
-            "SK": f"ts#{ts_iso}",
-            "lat": Decimal(str(lat)),
-            "lon": Decimal(str(lon)),
-            "geohash": geohash,
-            "city_name": city,
-            "temp": Decimal(str(temps[idx])),
-            "humidity": Decimal(str(hums[idx])),
-            "wind_speed": Decimal(str(winds[idx])),
-            "timestamp": ts_unix,
-            "ttl": ts_unix + TTL_SECONDS
-        }
-        weather_table.put_item(Item=item)
-    print(f"Inserted hourly data for {city}: {geohash}")
+    idx = get_current_hour_index(times)
+
+    ts_iso = times[idx] + "Z"
+    ts_unix = int(
+        datetime.fromisoformat(times[idx])
+        .replace(tzinfo=timezone.utc)
+        .timestamp()
+    )
+
+    item = {
+        "PK": f"grid#{geohash}",
+        "SK": f"ts#{ts_iso}",
+        "lat": Decimal(str(lat)),
+        "lon": Decimal(str(lon)),
+        "geohash": geohash,
+        "city_name": city,
+        "temp": Decimal(str(temps[idx])),
+        "humidity": Decimal(str(hums[idx])),
+        "wind_speed": Decimal(str(winds[idx])),
+        "timestamp": ts_unix,
+        "ttl": ts_unix + TTL_SECONDS
+    }
+
+    weather_table.put_item(Item=item)
+
+    print(f"Inserted current hour for {city} - {geohash}")
 
 # ----------------------------------
 # MAIN
@@ -103,12 +154,10 @@ def main():
         country = city['country']
         area_km2 = float(city.get("area_km2", 400)) 
 
-        side_km = math.sqrt(area_km2)
-        radius_km = side_km / 2
+        city_grids = generate_city_grids(center_lat, center_lon, area_km2, precision=5)
 
-        city_grids = generate_city_grids(center_lat, center_lon, radius_km)
-
-        for geohash, lat, lon in city_grids:
+        for geohash in city_grids:
+            lat, lon = pgh.decode(geohash)
             store_grid_data(weather_table, name, lat, lon, geohash)
 
     print("Loaded all cities successfully")
