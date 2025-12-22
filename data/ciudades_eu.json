@@ -5,7 +5,8 @@
     "lng": "16.37208",
     "country": "AT",
     "admin1": "09",
-    "admin2": "900"
+    "admin2": "900",
+    "area_km2": 414.6
   },
   {
     "name": "Brussels",
@@ -13,7 +14,8 @@
     "lng": "4.34878",
     "country": "BE",
     "admin1": "BRU",
-    "admin2": "BRU"
+    "admin2": "BRU",
+    "area_km2": 32.61
   },
   {
     "name": "Sofia",
@@ -21,7 +23,8 @@
     "lng": "23.32415",
     "country": "BG",
     "admin1": "42",
-    "admin2": "SOF46"
+    "admin2": "SOF46",
+    "area_km2": 492
   },
   {
     "name": "Minsk",
@@ -29,7 +32,8 @@
     "lng": "27.56667",
     "country": "BY",
     "admin1": "04",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 409.5
   },
   {
     "name": "Zürich",
@@ -37,7 +41,8 @@
     "lng": "8.55",
     "country": "CH",
     "admin1": "ZH",
-    "admin2": "112"
+    "admin2": "112",
+    "area_km2": 87.88
   },
   {
     "name": "Prague",
@@ -45,7 +50,8 @@
     "lng": "14.42076",
     "country": "CZ",
     "admin1": "52",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 496.21
   },
   {
     "name": "Munich",
@@ -53,7 +59,8 @@
     "lng": "11.57549",
     "country": "DE",
     "admin1": "02",
-    "admin2": "091"
+    "admin2": "091",
+    "area_km2": 310.4
   },
   {
     "name": "Köln",
@@ -61,7 +68,8 @@
     "lng": "6.95",
     "country": "DE",
     "admin1": "07",
-    "admin2": "053"
+    "admin2": "053",
+    "area_km2": 405.2
   },
   {
     "name": "Hamburg",
@@ -69,7 +77,8 @@
     "lng": "9.99302",
     "country": "DE",
     "admin1": "04",
-    "admin2": "00"
+    "admin2": "00",
+    "area_km2": 755.3
   },
   {
     "name": "Berlin",
@@ -77,7 +86,8 @@
     "lng": "13.41053",
     "country": "DE",
     "admin1": "16",
-    "admin2": "00"
+    "admin2": "00",
+    "area_km2": 891.8
   },
   {
     "name": "Copenhagen",
@@ -85,7 +95,8 @@
     "lng": "12.56553",
     "country": "DK",
     "admin1": "17",
-    "admin2": "101"
+    "admin2": "101",
+    "area_km2": 179.8 
   },
   {
     "name": "Madrid",
@@ -93,7 +104,8 @@
     "lng": "-3.70256",
     "country": "ES",
     "admin1": "29",
-    "admin2": "M"
+    "admin2": "M",
+    "area_km2": 604.3
   },
   {
     "name": "Barcelona",
@@ -101,7 +113,8 @@
     "lng": "2.15899",
     "country": "ES",
     "admin1": "56",
-    "admin2": "B"
+    "admin2": "B", 
+    "area_km2": 101.9
   },
   {
     "name": "Helsinki",
@@ -109,7 +122,8 @@
     "lng": "24.93545",
     "country": "FI",
     "admin1": "01",
-    "admin2": "011"
+    "admin2": "011", 
+    "area_km2": 213.8
   },
   {
     "name": "Paris",
@@ -117,7 +131,8 @@
     "lng": "2.3488",
     "country": "FR",
     "admin1": "11",
-    "admin2": "75"
+    "admin2": "75", 
+    "area_km2": 105.4
   },
   {
     "name": "Lyon",
@@ -125,7 +140,8 @@
     "lng": "4.84671",
     "country": "FR",
     "admin1": "84",
-    "admin2": "69"
+    "admin2": "69", 
+    "area_km2": 47.87
   },
   {
     "name": "Marseille Prefecture",
@@ -133,7 +149,8 @@
     "lng": "5.37901",
     "country": "FR",
     "admin1": "93",
-    "admin2": "13"
+    "admin2": "13", 
+    "area_km2": 240.6
   },
   {
     "name": "Manchester",
@@ -141,7 +158,8 @@
     "lng": "-2.23743",
     "country": "GB",
     "admin1": "ENG",
-    "admin2": "I2"
+    "admin2": "I2", 
+    "area_km2": 116.5
   },
   {
     "name": "London",
@@ -149,7 +167,8 @@
     "lng": "-0.12574",
     "country": "GB",
     "admin1": "ENG",
-    "admin2": "GLA"
+    "admin2": "GLA", 
+    "area_km2": 1572
   },
   {
     "name": "Glasgow",
@@ -157,7 +176,8 @@
     "lng": "-4.25763",
     "country": "GB",
     "admin1": "SCT",
-    "admin2": "V2"
+    "admin2": "V2", 
+    "area_km2": 175
   },
   {
     "name": "Birmingham",
@@ -165,7 +185,8 @@
     "lng": "-1.89983",
     "country": "GB",
     "admin1": "ENG",
-    "admin2": "A7"
+    "admin2": "A7",
+    "area_km2": 267.8
   },
   {
     "name": "Athens",
@@ -173,7 +194,8 @@
     "lng": "23.72784",
     "country": "GR",
     "admin1": "ESYE31",
-    "admin2": "99"
+    "admin2": "99",
+    "area_km2": 38.96
   },
   {
     "name": "Budapest",
@@ -181,7 +203,8 @@
     "lng": "19.04045",
     "country": "HU",
     "admin1": "05",
-    "admin2": ""
+    "admin2": "",
+    "area_km2": 525.2
   },
   {
     "name": "Dublin",
@@ -189,7 +212,8 @@
     "lng": "-6.24889",
     "country": "IE",
     "admin1": "L",
-    "admin2": "33"
+    "admin2": "33", 
+    "area_km2": 117.8
   },
   {
     "name": "Turin",
@@ -197,7 +221,8 @@
     "lng": "7.68682",
     "country": "IT",
     "admin1": "12",
-    "admin2": "TO"
+    "admin2": "TO", 
+    "area_km2": 130.2
   },
   {
     "name": "Milan",
@@ -205,7 +230,8 @@
     "lng": "9.18951",
     "country": "IT",
     "admin1": "09",
-    "admin2": "MI"
+    "admin2": "MI", 
+    "area_km2": 181.8
   },
   {
     "name": "Melito di Napoli",
@@ -213,7 +239,8 @@
     "lng": "14.23104",
     "country": "IT",
     "admin1": "04",
-    "admin2": "NA"
+    "admin2": "NA", 
+    "area_km2": 4
   },
   {
     "name": "Amsterdam",
