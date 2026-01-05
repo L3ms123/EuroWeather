@@ -100,13 +100,11 @@
             <div class="current-status">
               <div class="current-left">
                 <div class="current-icon-wrapper">
-                  <!-- Este icono lo cambiará detail.js según si llueve o no -->
                   <span class="material-symbols-outlined current-icon">partly_cloudy_day</span>
                 </div>
                 <div>
-                  <div class="current-temp">12°</div>
-                  <!-- También se actualizará desde detail.js -->
-                  <div class="current-desc">Light rain expected</div>
+                  <div class="current-temp">--°</div>
+                  <div class="current-desc">--</div>
                 </div>
               </div>
             </div>
@@ -122,7 +120,7 @@
                 </div>
                 <div class="stat-body">
                   <div class="stat-label">Wind Speed</div>
-                  <div class="stat-value">14 <span class="stat-unit">km/h</span></div>
+                  <div class="stat-value" id="windSpeed">-- <span class="stat-unit">km/h</span></div>
                 </div>
               </div>
 
@@ -135,7 +133,7 @@
                 </div>
                 <div class="stat-body">
                   <div class="stat-label">Humidity</div>
-                  <div class="stat-value">65 <span class="stat-unit">%</span></div>
+                  <div class="stat-value" id="Humidity">-- <span class="stat-unit">%</span></div>
                 </div>
               </div>
 
@@ -148,7 +146,7 @@
                 </div>
                 <div class="stat-body">
                   <div class="stat-label">Rain Probability</div>
-                  <div class="stat-value">20 <span class="stat-unit">%</span></div>
+                  <div class="stat-value" id="rainProb">-- <span class="stat-unit">%</span></div>
                 </div>
               </div>
 
@@ -161,7 +159,7 @@
                 </div>
                 <div class="stat-body">
                   <div class="stat-label">Rain Amount</div>
-                  <div class="stat-value">1.2 <span class="stat-unit">mm</span></div>
+                  <div class="stat-value" id="rainAmount">-- <span class="stat-unit">mm</span></div>
                 </div>
               </div>
             </div>

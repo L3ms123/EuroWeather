@@ -74,11 +74,42 @@ function updateMap(lat, lon) {
   }
 }
 
+function chooseIconFromData(data) {
+  const temp = data.temp;
+  const rainProb = data.precipitation_prob;
+  const rain = data.precipitation;
+
+  if ((rainProb != null && rainProb > 60) || (rain != null && rain > 1)) {
+    return "rainy";
+  }
+
+  if ((rainProb != null && rainProb > 20) || (rain != null && rain > 0)) {
+    return "partly_cloudy_day";
+  }
+
+  if (temp != null && temp >= 20) {
+    return "wb_sunny";
+  }
+
+  if (temp != null && temp < 5) {
+    return "ac_unit";
+  }
+
+  return "wb_cloudy";
+}
+
 // 4) Rellenar el HTML con los datos de la API
 function updateDetailPage(w) {
   const locationNameEl = document.querySelector(".location-name");
   const locationUpdatedEl = document.querySelector(".location-updated");
   const coordsEl = document.getElementById("locationCoords"); 
+  const tempEl = document.querySelector(".current-temp");
+  const descEl = document.querySelector(".current-desc");
+  const feelsEl = document.querySelector(".current-feels");
+  const windEl = document.getElementById("windSpeed");
+  const humidityEl = document.getElementById("Humidity");
+  const rainProbEl = document.getElementById("rainProb");
+  const rainAmountEl = document.getElementById("rainAmount");
 
   if (locationNameEl) {
     locationNameEl.textContent = w.city_name || "Unknown city";
@@ -96,12 +127,14 @@ function updateDetailPage(w) {
     )}, Lon: ${w.lon.toFixed(5)}`;
   }
 
-  const tempEl = document.querySelector(".current-temp");
-  const descEl = document.querySelector(".current-desc");
-  const feelsEl = document.querySelector(".current-feels");
-
   if (tempEl && w.temp != null) {
     tempEl.textContent = `${Math.round(w.temp)}°`;
+  }
+
+  const mainIconEl = document.querySelector(".current-icon");
+  if (mainIconEl && w.temp != null) {
+    const iconName = chooseIconFromData(w);
+    mainIconEl.textContent = iconName;
   }
 
   if (descEl && w.temp != null) {
@@ -116,31 +149,20 @@ function updateDetailPage(w) {
     feelsEl.textContent = `Feels like ${Math.round(w.temp)}°`;
   }
 
-  const summaryItems = document.querySelectorAll(
-    ".current-summary .summary-item .summary-value"
-  );
-  if (summaryItems[0] && w.precipitation_prob != null) {
-    summaryItems[0].textContent = `${w.precipitation_prob}%`;
+  if (windEl && w.wind_speed != null) {
+    windEl.textContent = `${w.wind_speed.toFixed(1)} km/h`;
   }
 
-  const statCards = document.querySelectorAll(".stats-grid .stat-card");
-
-  if (statCards[0]) {
-    const val = statCards[0].querySelector(".stat-value");
-    if (val && w.wind_speed != null) {
-      val.innerHTML = `${w.wind_speed.toFixed(
-        1
-      )} <span class="stat-unit">km/h</span>`;
-    }
+  if (humidityEl && w.humidity != null) {
+    humidityEl.textContent = `${w.humidity.toFixed(1)}%`;
   }
 
-  if (statCards[1]) {
-    const val = statCards[1].querySelector(".stat-value");
-    if (val && w.humidity != null) {
-      val.innerHTML = `${Math.round(
-        w.humidity
-      )} <span class="stat-unit">%</span>`;
-    }
+  if (rainProbEl && w.precipitation_prob != null) {
+    rainProbEl.textContent = `${w.precipitation_prob.toFixed(1)}%`;
+  }
+
+  if (rainAmountEl && w.precipitation != null) {
+    rainAmountEl.textContent = `${w.precipitation.toFixed(1)} mm`;
   }
 
   updateMap(w.lat, w.lon);
