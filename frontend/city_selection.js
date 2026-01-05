@@ -1,4 +1,4 @@
-const API_BASE = "https://8fcuk1jmo6.execute-api.us-east-1.amazonaws.com";
+const API_BASE = "https://5l3e4zv2p1.execute-api.us-east-1.amazonaws.com";
 
 window.searchMode = "city"; // global simple
 let citiesData = [];

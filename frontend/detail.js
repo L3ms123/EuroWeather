@@ -11,7 +11,7 @@ function getQueryParams() {
 }
 
 // 2) Llamar a tu API Gateway
-const API_BASE = "https://8fcuk1jmo6.execute-api.us-east-1.amazonaws.com";
+const API_BASE = "https://5l3e4zv2p1.execute-api.us-east-1.amazonaws.com";
 const CURRENT_ENDPOINT = `${API_BASE}/current-weather`;
 
 async function fetchCurrentWeather({ city, lat, lng }) {
