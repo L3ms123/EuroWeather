@@ -194,22 +194,28 @@ function initForecastPanel() {
 
   btnApply.addEventListener("click", () => {
     if (!inputDate.value || !inputTime.value) {
-      if (window.showToast) {
-        showToast("Please select both date and time", "warning");
-      } else {
-        alert("Please select both date and time");
-      }
+      alert("Please select a date and time.");
       return;
     }
 
     const selectedISO = `${inputDate.value}T${inputTime.value}:00Z`;
-    console.log("Selected forecast datetime:", selectedISO);
 
-    // Aquí luego llamarás a tu API de predicción, por ejemplo:
-    // fetch(`${API_BASE}/forecast?city=${city}&time=${encodeURIComponent(selectedISO)}`)
+    // Go to prediction page with the same city/coords + selected time
+    const params = getQueryParams();
 
-    panel.style.display = "none";
+    const predUrl = new URL("prediction.html", window.location.href);
+    predUrl.searchParams.set("time", selectedISO);
+
+    if (params.city) {
+      predUrl.searchParams.set("city", params.city);
+    } else {
+      predUrl.searchParams.set("lat", params.lat);
+      predUrl.searchParams.set("lng", params.lng);
+    }
+
+    window.location.href = predUrl.toString();
   });
+
 
   // cerrar al hacer clic fuera
   document.addEventListener("click", (e) => {
