@@ -168,63 +168,6 @@ function updateDetailPage(w) {
   updateMap(w.lat, w.lon);
 }
 
-function initForecastPanel() {
-  const btnForecast = document.getElementById("btnForecast");
-  const panel = document.getElementById("forecastPanel");
-  const btnCancel = document.getElementById("forecastCancel");
-  const btnApply = document.getElementById("forecastApply");
-  const inputDate = document.getElementById("forecastDate");
-  const inputTime = document.getElementById("forecastTime");
-
-  if (!btnForecast || !panel) return;
-
-  // abrir / cerrar panel
-  btnForecast.addEventListener("click", () => {
-    panel.style.display = panel.style.display === "none" ? "block" : "none";
-
-    // pre-rellenar con hoy y hora actual redondeada
-    const now = new Date();
-    inputDate.value = now.toISOString().slice(0, 10);
-    inputTime.value = `${now.getHours().toString().padStart(2, "0")}:00`;
-  });
-
-  btnCancel.addEventListener("click", () => {
-    panel.style.display = "none";
-  });
-
-  btnApply.addEventListener("click", () => {
-    if (!inputDate.value || !inputTime.value) {
-      alert("Please select a date and time.");
-      return;
-    }
-
-    const selectedISO = `${inputDate.value}T${inputTime.value}:00Z`;
-
-    // Go to prediction page with the same city/coords + selected time
-    const params = getQueryParams();
-
-    const predUrl = new URL("prediction.html", window.location.href);
-    predUrl.searchParams.set("time", selectedISO);
-
-    if (params.city) {
-      predUrl.searchParams.set("city", params.city);
-    } else {
-      predUrl.searchParams.set("lat", params.lat);
-      predUrl.searchParams.set("lng", params.lng);
-    }
-
-    window.location.href = predUrl.toString();
-  });
-
-
-  // cerrar al hacer clic fuera
-  document.addEventListener("click", (e) => {
-    if (!panel.contains(e.target) && e.target !== btnForecast) {
-      panel.style.display = "none";
-    }
-  });
-}
-
 
 
 // 5) Orquestar todo al cargar la página
@@ -238,8 +181,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const data = await fetchCurrentWeather(params);
-    updateDetailPage(data);   // pinta datos (incluye updateMap)
-    initForecastPanel();      // inicializa el panel del 7‑day forecast
+    updateDetailPage(data);   // pinta datos (incluye updateMap)  
   } catch (err) {
     console.error(err);
     if (window.showToast) {
