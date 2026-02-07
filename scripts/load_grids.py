@@ -6,8 +6,8 @@ import math
 # CONFIGURATION
 # ----------------------------------
 
-CITY_JSON = "data/ciudades_eu_km2.json"
-OUTPUT_JSON = "data/ciudades_eu_km2_with_grids.json"
+CITY_JSON = "docs/data/ciudades_eu_km2.json"
+OUTPUT_JSON = "docs/data/ciudades_eu_km2_with_grids.json"
 
 # ----------------------------------
 # UTILS

@@ -5,7 +5,7 @@ let citiesData = [];
 let selectedLatLng = null; 
 
 // cargar JSON 
-fetch('/data/ciudades_eu_km2_with_grids.json')
+fetch('./data/ciudades_eu_km2_with_grids.json')
   .then(res => res.json())
   .then(data => {
     citiesData = data;

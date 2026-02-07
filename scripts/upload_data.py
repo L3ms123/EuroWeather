@@ -14,7 +14,7 @@ TTL_DAYS = 7
 TTL_SECONDS = TTL_DAYS * 24 * 3600
 
 DYNAMODB_TABLE = "WeatherReadings"
-CITY_JSON = "data/ciudades_eu_km2_with_grids.json"
+CITY_JSON = "docs/data/ciudades_eu_km2_with_grids.json"
 session = requests.Session()
 
 # ----------------------------------
