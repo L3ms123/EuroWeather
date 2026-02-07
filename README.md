@@ -15,9 +15,9 @@
 
 
 ## 🎮 Demo
-![Demo](demo.gif)
+![Demo](img/demo.gif)
 
-
+### Try it yourself!  https://l3ms123.github.io/EuroWeather/
 
 ## 🏗️ Architecture
 Data flow of the system
