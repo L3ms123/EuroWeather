@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>City Detail - EuroWeather</title>
+
+  <link rel="icon" type="image" href="..\img\weather.png" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- JS para leer la ciudad -->
+  <script src="detail.js" defer></script>
+
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    defer
+  ></script>
+
+</head>
+<body class="body">
+  <div class="app">
+
+    <!-- Header reciclado -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <span class="material-symbols-outlined">cloud_circle</span>
+        </div>
+        <h2 class="title">EuroWeather</h2>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <section class="location-header" style="border-bottom: none; padding-bottom: 0;">
+          <div>
+            <div class="location-label">
+              <span class="material-symbols-outlined">location_on</span>
+              <span>Current Location</span>
+            </div>
+            <h2 class="location-name">City name</h2>
+            <div class="location-meta">
+              <span class="location-coords" id="locationCoords"></span>
+            </div>
+            <p class="location-updated">Last updated: --:--</p>
+          </div>
+
+        <!-- GRID: izquierda (estado) + derecha (mapa) -->
+        <div class="grid">
+          <!-- COLUMNA IZQUIERDA -->
+          <section>
+            <div class="current-status">
+              <div class="current-left">
+                <div class="current-icon-wrapper">
+                  <span class="material-symbols-outlined current-icon">partly_cloudy_day</span>
+                </div>
+                <div>
+                  <div class="current-temp">--°</div>
+                  <div class="current-desc">--</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats detallados -->
+            <div class="stats-grid">
+              <!-- Wind -->
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div class="stat-icon-box">
+                    <span class="material-symbols-outlined">air</span>
+                  </div>
+                </div>
+                <div class="stat-body">
+                  <div class="stat-label">Wind Speed</div>
+                  <div class="stat-value" id="windSpeed">-- <span class="stat-unit">km/h</span></div>
+                </div>
+              </div>
+
+              <!-- Humidity -->
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div class="stat-icon-box blue">
+                    <span class="material-symbols-outlined">water_drop</span>
+                  </div>
+                </div>
+                <div class="stat-body">
+                  <div class="stat-label">Humidity</div>
+                  <div class="stat-value" id="Humidity">-- <span class="stat-unit">%</span></div>
+                </div>
+              </div>
+
+              <!-- Rain probability -->
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div class="stat-icon-box orange">
+                    <span class="material-symbols-outlined">umbrella</span>
+                  </div>
+                </div>
+                <div class="stat-body">
+                  <div class="stat-label">Rain Probability</div>
+                  <div class="stat-value" id="rainProb">-- <span class="stat-unit">%</span></div>
+                </div>
+              </div>
+
+              <!-- Rain amount -->
+              <div class="stat-card">
+                <div class="stat-header">
+                  <div class="stat-icon-box purple">
+                    <span class="material-symbols-outlined">rainy</span>
+                  </div>
+                </div>
+                <div class="stat-body">
+                  <div class="stat-label">Rain Amount</div>
+                  <div class="stat-value" id="rainAmount">-- <span class="stat-unit">mm</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- COLUMNA DERECHA -->
+          <aside class="right-column">
+            <div class="map-card">
+              <div class="map-header">
+                <h3>Radar Map</h3>
+              </div>
+              <div class="map-body">
+                <div id="mapContainer" class="map-background"></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+
+    <footer class="footer">
+      <p>© 2025 EuroWeather. Data provided by OpenMeteo.</p>
+    </footer>
+  </div>
+</body>
+</html>
